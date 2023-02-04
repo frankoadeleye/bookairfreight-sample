@@ -17,13 +17,7 @@ function ShipmentResult({
         freight_path={flight_type}
       />
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      isSubmitted,
-      flight_type,
-      persistedValues.starting_country,
-      persistedValues.destination_country,
-    ]
+    [isSubmitted, flight_type]
   );
 
   if (showQuote) {

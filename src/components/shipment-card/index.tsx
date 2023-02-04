@@ -21,14 +21,14 @@ function ShipmentCard(props: ShipmentCardProps) {
 
   return (
     <div className="shipment-card">
-      <div>
+      <div className="flight-details">
         <div className="flight-type-header">
           <i className={icon}></i>
           <p>{flight_type}</p>
         </div>
         <div className="flight-delivery-date">{children}</div>
       </div>
-      <div>
+      <div className="path-and-quote">
         <div className="card-destination-header">
           {starting} <i className="fa-solid fa-arrow-right-long"></i>{" "}
           {destination}
