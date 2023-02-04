@@ -1,0 +1,104 @@
+.shipment-card {
+  border: 1px solid #808080;
+  box-sizing: border-box;
+  height: 150px;
+  width: auto;
+  margin: 10px 20px;
+  display: flex;
+}
+
+i {
+  font-size: 30px;
+  box-sizing: border-box;
+  color: #3898ec;
+}
+
+.shipment-card > div:first-child {
+  min-width: 300px;
+  flex: 1 1 0;
+  border-right: 1px solid #808080;
+}
+
+.shipment-card > div:last-child {
+  min-width: 70%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  font-family: sans-serif;
+}
+
+.flight-type-header,
+.flight-delivery-date {
+  box-sizing: border-box;
+}
+
+.flight-type-header {
+  height: 30%;
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  color: inherit;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #808080;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.flight-delivery-date {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: sans-serif;
+}
+
+.flight-delivery-date > div:first-child {
+  color: #4129c7;
+  font-size: 20px;
+  font-weight: 700;
+  padding-top: 10px;
+}
+
+.flight-delivery-date > div:nth-child(2) {
+  font-size: 15;
+}
+
+.flight-delivery-date > div:last-child {
+  font-size: 15;
+  font-weight: bold;
+}
+
+.card-destination-header,
+.card-quote-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.card-destination-header {
+  height: 20%;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background: blue;
+}
+
+.fa-arrow-right-long {
+  color: white;
+  font-size: 14px;
+}
+
+.card-quote-price {
+  height: 80%;
+  font-size: 40px;
+}

@@ -1,0 +1,25 @@
+.book-shipment {
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  width: 240px;
+  box-sizing: border-box;
+  margin: 0px 20px;
+}
+
+.inputs-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shipment-card-wrapper {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
