@@ -10,8 +10,9 @@ function BookShipmentPage() {
   SetDocumentTitle("Book New Shipment");
 
   const [showQuote, setShowQuote] = useState(false);
-  const [selected, setSelected] = useState("Air");
-  const [fixed_selected, setFixedSelected] = useState("Air");
+  const [selectedFreightPath, setFreightPath] = useState("Air");
+  const [updatedFreightPath, setUpdatedFreightPath] =
+    useState(selectedFreightPath);
   const [isSubmitted, setSubmitted] = useState(false);
 
   const [values, setValues] = useState({
@@ -20,14 +21,14 @@ function BookShipmentPage() {
     quote_price: 0,
   });
 
-  const [persistedValues, setPersistedValues] = useState({
-    starting_country: "",
-    destination_country: "",
-    quote_price: 0,
+  const [updatedValues, setUpdatedValues] = useState({
+    starting_country: values.starting_country,
+    destination_country: values.destination_country,
+    quote_price: values.quote_price,
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFixedSelected(selected);
+    setUpdatedFreightPath(selectedFreightPath);
     const { name, value } = event.target;
     setValues((prevState) => {
       return {
@@ -37,20 +38,20 @@ function BookShipmentPage() {
     });
   };
 
-  const handleSelectedOption = (
+  const handleSelectedFreightPath = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setSelected(event.target.value);
+    setFreightPath(event.target.value);
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPersistedValues({
+    setUpdatedValues({
       starting_country: values.starting_country,
       destination_country: values.destination_country,
       quote_price: values.quote_price,
     });
-    setFixedSelected(selected);
+    setUpdatedFreightPath(selectedFreightPath);
     setShowQuote(true);
     setSubmitted(true);
   };
@@ -85,8 +86,8 @@ function BookShipmentPage() {
             required
           />
           <SelectField
-            selectedValue={selected}
-            onChange={handleSelectedOption}
+            selectedValue={updatedFreightPath}
+            onChange={handleSelectedFreightPath}
             options={[
               { name: "Air", value: "Air" },
               { name: "Ocean", value: "Ocean" },
@@ -99,8 +100,8 @@ function BookShipmentPage() {
         {
           <ShipmentResult
             showQuote={showQuote}
-            flight_type={fixed_selected}
-            persistedValues={persistedValues}
+            flight_type={updatedFreightPath}
+            persistedValues={updatedValues}
             isSubmitted={isSubmitted}
           />
         }
