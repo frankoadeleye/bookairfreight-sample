@@ -5,6 +5,7 @@ import Button from "src/common/button";
 import { useState, useRef } from "react";
 import SelectField from "src/common/select-field";
 import ShipmentResult from "src/components/shipment-card/shipment-result";
+import selectOptions from "./options-data";
 
 function BookShipmentPage() {
   SetDocumentTitle("Book New Shipment");
@@ -67,10 +68,7 @@ function BookShipmentPage() {
           <SelectField
             selectRef={selectedFreightPath}
             selectedValue={freightPath}
-            options={[
-              { name: "Air", value: "Air" },
-              { name: "Ocean", value: "Ocean" },
-            ]}
+            options={selectOptions}
           />
         </div>
         <Button text="Create quote" />
