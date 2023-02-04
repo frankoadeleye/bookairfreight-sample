@@ -2,40 +2,25 @@ import { SetDocumentTitle } from "src/utils/set-doc-title";
 import "src/styles/shipment-page.css";
 import InputField from "src/common/input-field";
 import Button from "src/common/button";
-import { useState, useRef } from "react";
 import SelectField from "src/common/select-field";
 import ShipmentResult from "src/components/shipment-card/shipment-result";
 import selectOptions from "./options-data";
+import useShipment from "src/components/hooks/shipment";
 
 function BookShipmentPage() {
   SetDocumentTitle("Book New Shipment");
 
-  const startingCountryRef = useRef(null);
-  const destinationCountryRef = useRef(null);
-  const quotePriceRef = useRef(null);
-  const selectedFreightPath = useRef(null);
-
-  const [showQuote, setShowQuote] = useState(false);
-  const [isSubmitted, setSubmitted] = useState(false);
-
-  const [freightPath, setFreightPath] = useState(null);
-  const [values, setValues] = useState({
-    starting_country: "",
-    destination_country: "",
-    quote_price: 0,
-  });
-
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setValues({
-      starting_country: startingCountryRef.current.value,
-      destination_country: destinationCountryRef.current.value,
-      quote_price: quotePriceRef.current.value,
-    });
-    setFreightPath(selectedFreightPath.current.value);
-    setShowQuote(true);
-    setSubmitted(true);
-  };
+  const {
+    showQuote,
+    isSubmitted,
+    freightPath,
+    values,
+    startingCountryRef,
+    destinationCountryRef,
+    quotePriceRef,
+    selectedFreightPath,
+    handleSubmit,
+  } = useShipment();
 
   return (
     <div className="book-shipment">
