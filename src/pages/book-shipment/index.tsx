@@ -32,7 +32,6 @@ function BookShipmentPage() {
       quote_price: quotePriceRef.current.value,
     });
     setFreightPath(selectedFreightPath.current.value);
-    console.log(typeof selectedFreightPath.current.value);
     setShowQuote(true);
     setSubmitted(true);
   };
