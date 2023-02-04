@@ -1,10 +1,12 @@
 .shipment-card {
   border: 1px solid #808080;
   box-sizing: border-box;
-  height: 150px;
+  min-height: 150px;
   width: auto;
   margin: 10px 20px;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 i {
@@ -13,18 +15,19 @@ i {
   color: #3898ec;
 }
 
-.shipment-card > div:first-child {
-  min-width: 300px;
-  flex: 1 1 0;
+.flight-details {
+  width: 100%;
   border-right: 1px solid #808080;
 }
 
-.shipment-card > div:last-child {
-  min-width: 70%;
+.path-and-quote {
+  width: 100%;
+  padding-bottom: 20px;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  flex: 1 1 0;
   font-family: sans-serif;
+  gap: 10px;
 }
 
 .flight-type-header,
@@ -40,6 +43,7 @@ i {
   padding: 10px;
   color: inherit;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   border-bottom: 1px solid #808080;
 }
@@ -89,6 +93,8 @@ p {
   font-weight: 600;
   display: flex;
   gap: 5px;
+  box-sizing: border-box;
+  width: 100%;
   align-items: center;
   background: blue;
 }
@@ -101,4 +107,35 @@ p {
 .card-quote-price {
   height: 80%;
   font-size: 40px;
+}
+
+@media only screen and (min-width: 600px) {
+  .shipment-card {
+    flex-direction: row;
+    gap: 0px;
+  }
+
+  .flight-details {
+    width: 40%;
+  }
+
+  .flight-type-header {
+    justify-content: flex-start;
+  }
+
+  .path-and-quote {
+    width: 60%;
+    gap: 0px;
+    padding: 0px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .flight-details {
+    width: 30%;
+  }
+
+  .path-and-quote {
+    width: 70%;
+  }
 }

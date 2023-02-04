@@ -2,56 +2,37 @@ import { SetDocumentTitle } from "src/utils/set-doc-title";
 import "src/styles/shipment-page.css";
 import InputField from "src/common/input-field";
 import Button from "src/common/button";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SelectField from "src/common/select-field";
 import ShipmentResult from "src/components/shipment-card/shipment-result";
 
 function BookShipmentPage() {
   SetDocumentTitle("Book New Shipment");
 
+  const startingCountryRef = useRef(null);
+  const destinationCountryRef = useRef(null);
+  const quotePriceRef = useRef(null);
+  const selectedFreightPath = useRef(null);
+
   const [showQuote, setShowQuote] = useState(false);
-  const [selectedFreightPath, setFreightPath] = useState("Air");
-  const [updatedFreightPath, setUpdatedFreightPath] =
-    useState(selectedFreightPath);
   const [isSubmitted, setSubmitted] = useState(false);
 
+  const [freightPath, setFreightPath] = useState(null);
   const [values, setValues] = useState({
     starting_country: "",
     destination_country: "",
     quote_price: 0,
   });
 
-  const [updatedValues, setUpdatedValues] = useState({
-    starting_country: values.starting_country,
-    destination_country: values.destination_country,
-    quote_price: values.quote_price,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUpdatedFreightPath(selectedFreightPath);
-    const { name, value } = event.target;
-    setValues((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleSelectedFreightPath = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setFreightPath(event.target.value);
-  };
-
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setUpdatedValues({
-      starting_country: values.starting_country,
-      destination_country: values.destination_country,
-      quote_price: values.quote_price,
+    setValues({
+      starting_country: startingCountryRef.current.value,
+      destination_country: destinationCountryRef.current.value,
+      quote_price: quotePriceRef.current.value,
     });
-    setUpdatedFreightPath(selectedFreightPath);
+    setFreightPath(selectedFreightPath.current.value);
+    console.log(typeof selectedFreightPath.current.value);
     setShowQuote(true);
     setSubmitted(true);
   };
@@ -65,7 +46,7 @@ function BookShipmentPage() {
             label="Starting Country"
             type="text"
             name="starting_country"
-            onChange={handleChange}
+            inputRef={startingCountryRef}
             required
           />
           <InputField
@@ -73,7 +54,7 @@ function BookShipmentPage() {
             label="Destination Country"
             type="text"
             name="destination_country"
-            onChange={handleChange}
+            inputRef={destinationCountryRef}
             required
           />
           <InputField
@@ -81,13 +62,12 @@ function BookShipmentPage() {
             label="Quote Price"
             type="number"
             name="quote_price"
-            onChange={handleChange}
-            pattern="^(?!(0))[0-9]+$"
+            inputRef={quotePriceRef}
             required
           />
           <SelectField
-            selectedValue={updatedFreightPath}
-            onChange={handleSelectedFreightPath}
+            selectRef={selectedFreightPath}
+            selectedValue={freightPath}
             options={[
               { name: "Air", value: "Air" },
               { name: "Ocean", value: "Ocean" },
@@ -100,8 +80,8 @@ function BookShipmentPage() {
         {
           <ShipmentResult
             showQuote={showQuote}
-            flight_type={updatedFreightPath}
-            persistedValues={updatedValues}
+            flight_type={freightPath}
+            persistedValues={values}
             isSubmitted={isSubmitted}
           />
         }

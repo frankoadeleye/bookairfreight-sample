@@ -4,6 +4,7 @@ interface SelectFieldProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options: Array<string | object>;
   selectedValue: string;
+  selectRef: React.RefObject<HTMLSelectElement>;
 }
 
 interface OptionProps {
@@ -12,9 +13,13 @@ interface OptionProps {
 }
 
 function SelectField(props: SelectFieldProps) {
-  const { options, selectedValue, ...restProps } = props;
+  const { options, selectedValue, selectRef, ...restProps } = props;
   return (
-    <select className="select-field" value={selectedValue} {...restProps}>
+    <select
+      className="select-field"
+      defaultValue={selectedValue}
+      ref={selectRef}
+      {...restProps}>
       {options.map((option: OptionProps, index) => {
         const { name, value } = option;
         return (
